@@ -1,0 +1,20 @@
+<div class="container" *ngIf=user>
+  <form novalidate [formGroup]='editForm' (ngSubmit)="onSubmit()">
+    <p>
+      <mat-form-field class="half-width">
+        <input matInput formControlName="email" placeholder="Email" type="email" required>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="half-width">
+        <input matInput formControlName="first_name" placeholder="First Name" type="text" required>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="half-width">
+        <input matInput formControlName="last_name" placeholder="Last Name" type="text" required>
+      </mat-form-field>
+    </p>
+    <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="editForm.invalid">Submit</button>
+  </form>
+</div>
