@@ -22,6 +22,7 @@ import {MatIconModule} from "@angular/material/icon";
 import { LoginComponent } from './login/login.component';
 import {AuthService} from "./services/auth.service";
 import { RegistrationPageComponent } from './registration-page/registration-page.component';
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { RegistrationPageComponent } from './registration-page/registration-page
     ReactiveFormsModule,
     MatInputModule,
     CommonModule,
-    MatIconModule
+    MatIconModule,
+    MatButtonModule
   ],
   providers: [
     TableServiceService,
