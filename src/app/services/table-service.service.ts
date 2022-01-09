@@ -13,7 +13,7 @@ import {SourcesEntity} from "../users-table/sourcesEntity";
 export class TableServiceService {
 
   constructor(private http: HttpClient,
-              private processHHTPMsgService: ProcessHttpmsgService) { }
+              private processHTTPMsgService: ProcessHttpmsgService) { }
 
   //users get request
   getUsers(): Observable<userEntity[]>{
@@ -22,9 +22,7 @@ export class TableServiceService {
       return userList.map(function (user:any):userEntity{
         return new userEntity(user.id, user.email, user.first_name, user.last_name, user.avatar);
       });
-    }),catchError(this.processHHTPMsgService.handleError));
-
-    //return this.http.get<userEntity[]>(baseURL +'?page=2').pipe(catchError(this.processHHTPMsgService.handleError));
+    }),catchError(this.processHTTPMsgService.handleError));
   }
 
   //sources get request
@@ -34,6 +32,12 @@ export class TableServiceService {
       return sourceList.map(function (source:any):SourcesEntity{
         return new SourcesEntity(source.id, source.name, source.year, source.color, source.pantone_value);
       });
-    }),catchError(this.processHHTPMsgService.handleError));
+    }),catchError(this.processHTTPMsgService.handleError));
   }
+
+  //user delete request
+  deleteUser(user: userEntity) : Observable<any>{
+    return this.http.delete(baseURL + `/${user.id}`).pipe(catchError(this.processHTTPMsgService.handleError));
+  }
+
 }
