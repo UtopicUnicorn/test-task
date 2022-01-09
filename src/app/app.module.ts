@@ -11,15 +11,26 @@ import { UsersTableComponent } from './users-table/users-table.component';
 import { HeaderComponent } from './header/header.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {TableServiceService} from "./services/table-service.service";
-import {baseURL} from "./baseurl";
+import {baseURL, loginURL, registerURL} from "./baseurl";
 import { ProcessHttpmsgService } from "./services/process-httpmsg.service";
 import {HttpClientModule} from "@angular/common/http";
+import { UserEditorComponent } from './user-editor/user-editor.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatInputModule} from "@angular/material/input";
+import { CommonModule } from '@angular/common';
+import {MatIconModule} from "@angular/material/icon";
+import { LoginComponent } from './login/login.component';
+import {AuthService} from "./services/auth.service";
+import { RegistrationPageComponent } from './registration-page/registration-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UsersTableComponent,
     HeaderComponent,
+    UserEditorComponent,
+    LoginComponent,
+    RegistrationPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,11 +41,18 @@ import {HttpClientModule} from "@angular/common/http";
     MatToolbarModule,
     MatTableModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    CommonModule,
+    MatIconModule
   ],
   providers: [
     TableServiceService,
     ProcessHttpmsgService,
-    {provide: 'baseURL', useValue: baseURL}
+    AuthService,
+    {provide: 'baseURL', useValue: baseURL},
+    {provide: 'loginURL', useValue: loginURL},
+    {provide: 'registerURL', useValue: registerURL}
   ],
   bootstrap: [AppComponent]
 })
