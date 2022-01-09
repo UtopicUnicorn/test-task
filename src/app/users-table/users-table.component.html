@@ -1,4 +1,10 @@
-  <table mat-table [dataSource] = "users" class="mat-elevation-z8">
+<h1>User table</h1>
+<table mat-table [dataSource] = "users" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="avatar">
+      <th mat-header-cell *matHeaderCellDef> Avatar </th>
+      <td mat-cell *matCellDef="let element"> <img alt='element.avatar' [src] = 'element.avatar'></td>
+    </ng-container>
 
     <ng-container matColumnDef="email">
       <th mat-header-cell *matHeaderCellDef> Email </th>
@@ -15,9 +21,13 @@
       <td mat-cell *matCellDef="let element"> {{element.last_name}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="avatar">
-      <th mat-header-cell *matHeaderCellDef> Avatar </th>
-      <td mat-cell *matCellDef="let element"> <img alt='element.avatar' [src] = 'element.avatar'></td>
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>Action</th>
+      <td mat-cell *matCellDef = "let element">
+        <button class = "btn btn-danger" type="button" (click)="delete(element)">X</button>
+        <button class = "btn btn-check" type="button" (click)="userDetails(element)">Edit</button>
+      </td>
+
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="userTableDisplayedColumns"></tr>
