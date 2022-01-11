@@ -10,6 +10,12 @@
         <input matInput formControlName="password" placeholder="Password" type="password" required>
       </mat-form-field>
     </p>
-    <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="loginForm.invalid">Submit</button>
+    <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="loginForm.invalid">Login</button>
+    <button class = "btn btn-check" type="button" (click)="onRegistration()">Registration</button>
+    <div *ngIf="errMess">
+      <h2>Wrong username or login</h2>
+    </div>
   </form>
 </div>
+
+
