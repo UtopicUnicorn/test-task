@@ -1,6 +1,8 @@
 import { Component, OnInit} from '@angular/core';
 import {FormBuilder,FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../services/auth.service";
+import {Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-login',
@@ -10,13 +12,16 @@ import {AuthService} from "../services/auth.service";
 
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
+  errMess!: string;
   constructor( private fb: FormBuilder,
-               private authService: AuthService)
+               private authService: AuthService,
+               private router: Router)
   {}
 
   ngOnInit(): void {
     this.createForm();
   }
+
   createForm() : void {
 
     this.loginForm = this.fb.group({
@@ -28,9 +33,14 @@ export class LoginComponent implements OnInit {
   onSubmit():void{
     console.log('OK');
     this.authService.login(this.loginForm.value).subscribe
-    ({next:result=>{console.log(result);console.log(this.authService.getToken())},
-      error: error => {console.warn(error)}});
+    (
+      {next:()=>this.router.navigate(['table']),
+                error:error => {console.warn(error);this.errMess = error}
+              });
+  }
 
+  onRegistration(): void{
+    this.router.navigate(['registration']).then();
   }
 
 }
