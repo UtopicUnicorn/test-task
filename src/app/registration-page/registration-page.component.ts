@@ -31,7 +31,7 @@ export class RegistrationPageComponent implements OnInit {
   onSubmit():void{
     console.log('OK');
     this.aSub =this.authService.register(this.registrationForm.value).subscribe
-    ({next:()=>this.router.navigate(['/login']),
+    ({next:()=>this.router.navigate(['/table']),
       error: error => {console.warn(error)}});
   }
 }
