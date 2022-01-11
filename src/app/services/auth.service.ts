@@ -13,6 +13,7 @@ import {tap} from "rxjs/operators"
 export class AuthService {
 
   private token!: string;
+
   constructor(private http: HttpClient,
               private processHTTPMsgService: ProcessHttpmsgService,
               ) { }
@@ -42,8 +43,15 @@ export class AuthService {
     return !!this.token;
   }
 
-  register(user:userAuth): Observable<{id:string, token:string}>{
-    return this.http.post<{id:string,token: string}>(registerURL, user);
+  register(user:userAuth): Observable<{ token: string }>{
+    return this.http.post<{token: string}>(registerURL, user).pipe(
+      tap(
+        ({token}) =>{
+          localStorage.setItem('token',token);
+          this.setToken(token);
+        }
+      ),
+      catchError(this.processHTTPMsgService.handleError));
   }
 
 }
