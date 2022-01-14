@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {UserEditorService} from "../services/user-editor.service";
 import {userEntity} from "../users-table/userEntity";
 import {FormBuilder,FormControl, FormGroup, Validators} from "@angular/forms";
@@ -16,17 +16,21 @@ export class UserEditorComponent implements OnInit {
   user!: userEntity;
   editUser!: userEntity;
   errMessage!: string;
+  userTableDisplayedColumns!: string[];
+
   @ViewChild('fform') editFormDirective: any;
 
   constructor( private editService: UserEditorService,
                private route: ActivatedRoute,
-               private fb: FormBuilder,
-               private router:Router) {}
+               private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.recievedId = this.route.snapshot.params['id'];
-    this.editService.getUser(this.recievedId).subscribe({next:(data:userEntity)=>{this.user = data; this.jsonCheck() },error: error => this.errMessage = error});
-    //
+    this.editService.getUser(this.recievedId).subscribe
+    ({next:(data:userEntity)=>{this.user = data; this.createForm();}
+      ,error: error => this.errMessage = error});
+    this.userTableDisplayedColumns = ['avatar', 'email','first_name', 'last_name','action'];
+
   }
 
   validationMessages = {
@@ -45,24 +49,16 @@ export class UserEditorComponent implements OnInit {
     })
   }
 
-  jsonCheck(){
-    this.createForm();
-  }
-
   onSubmit() {
-    console.log('update');
+
     this.editUser = this.editForm.value;
-    var tempObj ={
+    const tempObj ={
       id: this.user.id,
       email: this.editUser.email,
       first_name: this.editUser.first_name,
       last_name: this.editUser.last_name,
       avatar: this.user.avatar
     }
-    console.log(tempObj);
-    this.editService.updateForm(this.user.id, tempObj).subscribe( ()=>this.router.navigate(['/table']));
-
-
+    this.editService.updateForm(this.user.id, tempObj).subscribe((user:userEntity)=>{this.user=user});
   }
-
 }
