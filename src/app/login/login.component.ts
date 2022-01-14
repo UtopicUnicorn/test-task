@@ -15,8 +15,7 @@ export class LoginComponent implements OnInit {
   errMess!: string;
   constructor( private fb: FormBuilder,
                private authService: AuthService,
-               private router: Router)
-  {}
+               private router: Router) {}
 
   ngOnInit(): void {
     this.createForm();
@@ -35,7 +34,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginForm.value).subscribe
     (
       {next:()=>this.router.navigate(['table']),
-                error:error => {console.warn(error);this.errMess = error}
+                error:error => {console.warn(error);this.errMess = error.error.error.toString()}
               });
   }
 
