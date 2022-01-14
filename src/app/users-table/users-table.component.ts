@@ -28,8 +28,6 @@ export class UsersTableComponent implements OnInit {
   }
 
   userDetails(user: userEntity) : void{
-    console.log('edit');
-    console.log(user);
     let id: number = +user.id;
     this.router.navigate(['user-detail/', id]);
   }
