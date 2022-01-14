@@ -12,13 +12,15 @@ import {AuthService} from "../services/auth.service";
 export class RegistrationPageComponent implements OnInit {
   registrationForm!: FormGroup;
   aSub!: Subscription;
+  errMess!:string;
 
   constructor( private fb: FormBuilder,
                private authService: AuthService,
                private router: Router)
-  { this.createForm() }
+  {  }
 
   ngOnInit(): void {
+    this.createForm();
   }
 
   createForm() {
@@ -28,10 +30,14 @@ export class RegistrationPageComponent implements OnInit {
       password:new FormControl('', Validators.required),
     })
   }
+
   onSubmit():void{
-    console.log('OK');
     this.aSub =this.authService.register(this.registrationForm.value).subscribe
     ({next:()=>this.router.navigate(['/table']),
-      error: error => {console.warn(error)}});
+      error: error => {
+        this.errMess = error.error.error.toString();
+      }
+      }
+    );
   }
 }
