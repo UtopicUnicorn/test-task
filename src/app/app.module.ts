@@ -23,6 +23,7 @@ import { LoginComponent } from './login/login.component';
 import {AuthService} from "./services/auth.service";
 import { RegistrationPageComponent } from './registration-page/registration-page.component';
 import {MatButtonModule} from "@angular/material/button";
+import  {MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import {MatButtonModule} from "@angular/material/button";
     MatInputModule,
     CommonModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule
   ],
   providers: [
     TableServiceService,
