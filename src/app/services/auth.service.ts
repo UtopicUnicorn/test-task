@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import {ProcessHttpmsgService} from "./process-httpmsg.service";
-import {catchError, Observable} from "rxjs";
+import {Observable} from "rxjs";
 import {loginURL} from "../baseurl";
 import {registerURL} from "../baseurl";
 import {HttpClient} from "@angular/common/http";
@@ -14,9 +13,7 @@ export class AuthService {
 
   private token!: string;
 
-  constructor(private http: HttpClient,
-              private processHTTPMsgService: ProcessHttpmsgService,
-              ) { }
+  constructor(private http: HttpClient) { }
 
 
   login(user:userAuth): Observable<{ token: string }>{
@@ -27,8 +24,8 @@ export class AuthService {
             localStorage.setItem('token',token);
             this.setToken(token);
           }
-        ),
-    catchError(this.processHTTPMsgService.handleError))
+        )
+      )
   }
 
   setToken(token:string) : void{
@@ -50,8 +47,12 @@ export class AuthService {
           localStorage.setItem('token',token);
           this.setToken(token);
         }
-      ),
-      catchError(this.processHTTPMsgService.handleError));
+      )
+     );
   }
 
+  logout() {
+    this.setToken('');
+    localStorage.clear();
+  }
 }
