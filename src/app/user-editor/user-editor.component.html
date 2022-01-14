@@ -15,6 +15,14 @@
         <input matInput formControlName="last_name" placeholder="Last Name" type="text" required>
       </mat-form-field>
     </p>
-    <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="editForm.invalid">Submit</button>
+    <button mat-raised-button type="submit"  [disabled]="editForm.invalid">Submit</button>
+
+    <div *ngIf="user">
+      <h3>User Info</h3>
+      <p>First Name:{{user.first_name}}</p>
+      <p>Last Name:{{user.last_name}}</p>
+      <p>Email:{{user.email}}</p>
+    </div>
+
   </form>
 </div>
