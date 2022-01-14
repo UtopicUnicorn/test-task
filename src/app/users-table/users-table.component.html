@@ -24,8 +24,8 @@
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef>Action</th>
       <td mat-cell *matCellDef = "let element">
-        <button class = "btn btn-danger" type="button" (click)="delete(element)">X</button>
-        <button class = "btn btn-check" type="button" (click)="userDetails(element)">Edit</button>
+        <button mat-mini-fab color="primary" (click)="delete(element)"  style="margin-right: 10px"><mat-icon>delete</mat-icon></button>
+        <button mat-raised-button  color="primary" (click)="userDetails(element)">Edit</button>
       </td>
 
     </ng-container>
