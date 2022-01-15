@@ -12,18 +12,18 @@ import { HeaderComponent } from './header/header.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {TableServiceService} from "./services/table-service.service";
 import {baseURL, loginURL, registerURL} from "./baseurl";
-import { ProcessHttpmsgService } from "./services/process-httpmsg.service";
 import {HttpClientModule} from "@angular/common/http";
 import { UserEditorComponent } from './user-editor/user-editor.component';
-import {ReactiveFormsModule} from "@angular/forms";
-import {MatInputModule} from "@angular/material/input";
+import { ReactiveFormsModule } from "@angular/forms";
+import { MatInputModule } from "@angular/material/input";
 import { CommonModule } from '@angular/common';
-import {MatIconModule} from "@angular/material/icon";
+import { MatIconModule } from "@angular/material/icon";
 import { LoginComponent } from './login/login.component';
-import {AuthService} from "./services/auth.service";
+import { AuthService } from "./services/auth.service";
 import { RegistrationPageComponent } from './registration-page/registration-page.component';
-import {MatButtonModule} from "@angular/material/button";
-import  {MatDialogModule} from "@angular/material/dialog";
+import { MatButtonModule } from "@angular/material/button";
+import  { MatDialogModule } from "@angular/material/dialog";
+import { UserEditorService } from "./services/user-editor.service";
 
 @NgModule({
   declarations: [
@@ -52,7 +52,7 @@ import  {MatDialogModule} from "@angular/material/dialog";
   ],
   providers: [
     TableServiceService,
-    ProcessHttpmsgService,
+    UserEditorService,
     AuthService,
     {provide: 'baseURL', useValue: baseURL},
     {provide: 'loginURL', useValue: loginURL},
