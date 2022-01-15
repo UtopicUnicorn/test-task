@@ -1,16 +1,16 @@
-<div class="container">
-  <form novalidate [formGroup]='registrationForm' (ngSubmit)="onSubmit()">
+<div>
+  <form novalidate style="text-align: center" [formGroup]='registrationForm' (ngSubmit)="onSubmit()">
     <p>
-      <mat-form-field class="half-width">
+      <mat-form-field>
         <input matInput formControlName="email" placeholder="Email" type="email" required>
       </mat-form-field>
     </p>
     <p>
-      <mat-form-field class="half-width">
+      <mat-form-field>
         <input matInput formControlName="password" placeholder="Password" type="password" required>
       </mat-form-field>
     </p>
-    <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="registrationForm.invalid">Save</button>
+      <button type="submit" mat-raised-button [disabled]="registrationForm.invalid">Register</button>
     <div *ngIf="errMess">
       <h2>{{errMess}}</h2>
     </div>
