@@ -1,4 +1,5 @@
-<mat-toolbar  color="primary">
-  <span class="example-spacer"></span>
-  <button mat-raised-button (click)="logout()"><span class="fa fa-sign-in fa-lg"></span>Logout</button>
+<mat-toolbar color="primary">
+  <span class="spacer"></span>
+  <button mat-raised-button (click)="onRegistration()" *ngIf="this.router.url ==='/login'" style="margin-right: 10px"><span class="fa fa-sign-in fa-lg"></span>Registration</button>
+  <button mat-raised-button (click)="logout()" *ngIf="this.router.url !=='/login' && this.router.url !=='/registration'"><span class="fa fa-sign-in fa-lg"></span>Logout</button>
 </mat-toolbar>

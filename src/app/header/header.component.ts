@@ -8,14 +8,20 @@ import {Router} from "@angular/router";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  public href!: string;
 
   constructor(private authService: AuthService,
-              private router: Router) { }
+              public router: Router) {
+  }
 
   ngOnInit(): void {
   }
   logout(): void{
     this.authService.logout();
     this.router.navigate(['login']);
+  }
+
+  onRegistration(): void{
+    this.router.navigate(['registration']);
   }
 }
