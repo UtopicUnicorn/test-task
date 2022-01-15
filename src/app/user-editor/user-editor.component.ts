@@ -1,5 +1,5 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
 import {UserEditorService} from "../services/user-editor.service";
 import {userEntity} from "../users-table/userEntity";
 import {FormBuilder,FormControl, FormGroup, Validators} from "@angular/forms";
@@ -18,11 +18,10 @@ export class UserEditorComponent implements OnInit {
   errMessage!: string;
   userTableDisplayedColumns!: string[];
 
-  @ViewChild('fform') editFormDirective: any;
-
   constructor( private editService: UserEditorService,
                private route: ActivatedRoute,
-               private fb: FormBuilder) {}
+               private fb: FormBuilder,
+               private router: Router) {}
 
   ngOnInit(): void {
     this.recievedId = this.route.snapshot.params['id'];
@@ -33,13 +32,6 @@ export class UserEditorComponent implements OnInit {
 
   }
 
-  validationMessages = {
-    'email':{
-      'required':      'Email is required.',
-      'email':         'Email not in valid format.'
-    }
-  };
-
   createForm() {
 
     this.editForm = this.fb.group({
@@ -49,7 +41,7 @@ export class UserEditorComponent implements OnInit {
     })
   }
 
-  onSubmit() {
+  onSubmit(): void {
 
     this.editUser = this.editForm.value;
     const tempObj ={
@@ -61,4 +53,9 @@ export class UserEditorComponent implements OnInit {
     }
     this.editService.updateForm(this.user.id, tempObj).subscribe((user:userEntity)=>{this.user=user});
   }
+
+  goBack(): void {
+    this.router.navigate(['/table']);
+  }
+
 }
