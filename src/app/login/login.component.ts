@@ -36,9 +36,4 @@ export class LoginComponent implements OnInit {
                 error:error => {console.warn(error);this.errMess = error.error.error.toString()}
               });
   }
-
-  onRegistration(): void{
-    this.router.navigate(['registration']).then();
-  }
-
 }
