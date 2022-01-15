@@ -12,7 +12,6 @@ import {FormBuilder,FormControl, FormGroup, Validators} from "@angular/forms";
 export class UserEditorComponent implements OnInit {
   recievedId!: string;
   editForm!: FormGroup;
-  visibility ='shown';
   user!: userEntity;
   editUser!: userEntity;
   errMessage!: string;
