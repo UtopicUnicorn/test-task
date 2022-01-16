@@ -1,41 +1,43 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
-import {userEntity} from "../users-table/userEntity";
+import {userInfoClass} from "../users-table/user-info.class";
 import {HttpClient} from "@angular/common/http";
-import {baseURL} from "../baseurl";
+import {apiUrl} from "../api-url";
 import {map} from 'rxjs/operators';
-import {SourcesEntity} from "../users-table/sourcesEntity";
+import {SourcesClass} from "../users-table/sources.class";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TableServiceService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   //users get request
-  getUsers(): Observable<userEntity[]>{
-    return this.http.get<userEntity[]>(baseURL +'?page=2').pipe(map((data:any)=>{
+  getUsers(): Observable<userInfoClass[]> {
+    return this.http.get<userInfoClass[]>(apiUrl + '?page=2').pipe(map((data: any) => {
       let userList = data['data'];
-      return userList.map(function (user:any):userEntity{
-        return new userEntity(user.id, user.email, user.first_name, user.last_name, user.avatar);
+      return userList.map(function (user: any): userInfoClass {
+        return new userInfoClass(user.id, user.email, user.first_name, user.last_name, user.avatar);
       });
     }));
   }
 
+
   //sources get request
-  getSourcese(): Observable<SourcesEntity[]>{
-    return this.http.get<SourcesEntity[]>(baseURL +'unknown').pipe(map((data:any)=>{
+  getSources(): Observable<SourcesClass[]> {
+    return this.http.get<SourcesClass[]>(apiUrl + 'unknown').pipe(map((data: any) => {
       let sourceList = data['data'];
-      return sourceList.map(function (source:any):SourcesEntity{
-        return new SourcesEntity(source.id, source.name, source.year, source.color, source.pantone_value);
+      return sourceList.map(function (source: any): SourcesClass {
+        return new SourcesClass(source.id, source.name, source.year, source.color, source.pantone_value);
       });
     }));
   }
 
   //user delete request
-  deleteUser(user: userEntity) : Observable<any>{
-    return this.http.delete(baseURL + `/${user.id}`);
+  deleteUser(user: userInfoClass): Observable<any> {
+    return this.http.delete(apiUrl + `/${user.id}`);
   }
 
 }

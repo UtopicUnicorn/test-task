@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {baseURL} from "../baseurl";
+import {apiUrl} from "../api-url";
 import {Observable} from "rxjs";
-import {userEntity} from "../users-table/userEntity";
+import {userInfoClass} from "../users-table/user-info.class";
 import {map} from "rxjs/operators";
 
 @Injectable({
@@ -10,22 +10,24 @@ import {map} from "rxjs/operators";
 })
 export class UserEditorService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
-  getUser(id: string):Observable<userEntity>{
-    return this.http.get<userEntity>(baseURL + `/${id}`)
-      .pipe(map((data:any)=>{
-        return data['data']})
-      )
-  };
+  getUser(id: string): Observable<userInfoClass> {
+    return this.http.get<userInfoClass>(apiUrl + `/${id}`)
+      .pipe(map((data: any) => {
+          return data['data'];
+        })
+      );
+  }
 
-  updateForm(id:string,sendForm:userEntity): Observable<any>{
+  updateForm(id: string, sendForm: userInfoClass): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     };
-    return this.http.put<userEntity>(baseURL + `/${id}`, sendForm, httpOptions);
+    return this.http.put<userInfoClass>(apiUrl + `/${id}`, sendForm, httpOptions);
 
   }
 
