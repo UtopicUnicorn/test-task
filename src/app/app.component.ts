@@ -6,15 +6,11 @@ import {AuthService} from "./services/auth.service";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   constructor(private auth: AuthService) {
   }
-  title = 'test-task';
 
   ngOnInit() {
-    const potToken = localStorage.getItem('token');
-    if(potToken!==null){
-      this.auth.setToken(potToken);
-    }
+    this.auth.checkToken();
   }
 }
