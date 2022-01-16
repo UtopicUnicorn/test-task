@@ -1,4 +1,4 @@
-export const baseURL = 'https://reqres.in/api/users';
+export const apiUrl = 'https://reqres.in/api/users';
 
 export const loginURL = 'https://reqres.in/api/login';
 

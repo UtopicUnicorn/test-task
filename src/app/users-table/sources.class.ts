@@ -1,4 +1,4 @@
-export class SourcesEntity {
+export class SourcesClass {
   constructor
   (
     public id: string,
