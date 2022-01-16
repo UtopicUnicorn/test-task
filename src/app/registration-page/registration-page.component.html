@@ -1,5 +1,5 @@
 <div class="container">
-  <form novalidate style="text-align: center" [formGroup]='registrationForm' (ngSubmit)="onSubmit()">
+  <form novalidate [formGroup]='registrationForm' (ngSubmit)="onSubmit()">
     <p>
       <mat-form-field>
         <input matInput formControlName="email" placeholder="Email" type="email" required>
@@ -10,7 +10,7 @@
         <input matInput formControlName="password" placeholder="Password" type="password" required>
       </mat-form-field>
     </p>
-      <button type="submit" mat-raised-button [disabled]="registrationForm.invalid">Register</button>
+    <button type="submit" mat-raised-button [disabled]="registrationForm.invalid">Register</button>
     <div *ngIf="errMess">
       <h2>{{errMess}}</h2>
     </div>

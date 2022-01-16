@@ -1,21 +1,21 @@
 <div *ngIf=user class="container">
-  <form style="text-align: center" novalidate [formGroup]='editForm' (ngSubmit)="onSubmit()">
+  <form novalidate [formGroup]='editForm' (ngSubmit)="onSubmit()">
     <p>
-      <mat-form-field class="half-width">
+      <mat-form-field>
         <input matInput formControlName="email" placeholder="Email" type="email">
       </mat-form-field>
     </p>
     <p>
-      <mat-form-field class="half-width">
+      <mat-form-field>
         <input matInput formControlName="first_name" placeholder="First Name" type="text" required>
       </mat-form-field>
     </p>
     <p>
-      <mat-form-field class="half-width">
+      <mat-form-field>
         <input matInput formControlName="last_name" placeholder="Last Name" type="text" required>
       </mat-form-field>
     </p>
-    <button mat-raised-button type="submit"  [disabled]="editForm.invalid">Update</button>
+    <button mat-raised-button type="submit" [disabled]="editForm.invalid">Update</button>
     <div *ngIf="user">
       <h3>User Info</h3>
       <p>First Name:{{user.first_name}}</p>
