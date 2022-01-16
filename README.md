@@ -1,35 +1,51 @@
 # TestTask
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.2.
+## Реализовано:
 
-## Development server
+1. страницы для авторизации и регистрации;
+2. страница со списками пользователей и ресурсов;
+3. страница c подробной информацией о пользователе;
+4. возможность редактирования пользователя;
+5. возможность удалять пользователя из списка;
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Запуск
 
-## Code scaffolding
+1. установить node.js
+```bash
+brew install node; для macos или sudo apt install nodejs для ubuntu 20
+```
+2. установить angular cli
+```bash
+npm install -g @angular/cli
+```
+3. клонировать репозиторий
+```bash
+git clone https://github.com/UtopicUnicorn/test-task.git
+```
+4. перейти в папку с проектом
+```bash
+cd test-task
+```
+5.  установить зависимости
+```bash
+npm install
+```
+6. запустить сервер разработки
+```bash
+ng serve
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Для сборки и запуска Docker контейнера
+1. Сборка
+```bash
+docker build . -t test-task
+```
+2. Запуск
+```bash
+docker run -p 80:80 test-task:latest
+```
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-
-## Docker build
-
-docker build . -t test/test-task  
-
-## Docker run
-
-docker run -p 4200:80 test/test-task  
+# Возможные доработки:
+1. Изменить форму редактирования информации о пользователе на диалоговое окно;
+2. Добавить модульные тесты;
+3. Реализовать паджинацию для /users;  
